@@ -58,7 +58,8 @@
             android:text="."
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_700"/>
+            android:backgroundTint="@color/teal_700"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnZero"
@@ -68,7 +69,8 @@
             android:text="0"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnResolve"
@@ -78,7 +80,8 @@
             android:text="="
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_700"/>
+            android:backgroundTint="@color/teal_700"
+            android:onClick="onClickButton"/>
 
 
     </LinearLayout>
@@ -103,7 +106,8 @@
             android:text="1"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnTwo"
@@ -113,7 +117,8 @@
             android:text="2"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
 
         <Button
@@ -124,7 +129,8 @@
             android:text="3"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnSum"
@@ -134,7 +140,8 @@
             android:text="+"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/purple_500"/>
+            android:backgroundTint="@color/purple_500"
+            android:onClick="onClickButton"/>
 
 
 
@@ -160,7 +167,8 @@
             android:text="4"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnFive"
@@ -170,7 +178,8 @@
             android:text="5"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
 
         <Button
@@ -181,7 +190,8 @@
             android:text="6"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnSub"
@@ -191,7 +201,8 @@
             android:text="-"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/purple_500"/>
+            android:backgroundTint="@color/purple_500"
+            android:onClick="onClickButton"/>
 
 
 
@@ -216,7 +227,8 @@
             android:text="7"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnEight"
@@ -226,7 +238,8 @@
             android:text="8"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
 
         <Button
@@ -237,7 +250,8 @@
             android:text="9"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/teal_200"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnMulti"
@@ -248,7 +262,8 @@
             android:textAllCaps="false"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/purple_500"/>
+            android:backgroundTint="@color/purple_500"
+            android:onClick="onClickButton"/>
 
 
 
@@ -273,7 +288,8 @@
             android:text="CLEAR"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/purple_200"/>
+            android:backgroundTint="@color/purple_200"
+            android:onClick="onClickButton"/>
 
 
         <com.google.android.material.button.MaterialButton
@@ -285,7 +301,8 @@
             app:icon="@drawable/ic_backspace"
             app:iconGravity="textStart"
             app:iconPadding="0dp"
-            android:backgroundTint="@color/teal_700"/>
+            android:backgroundTint="@color/teal_700"
+            android:onClick="onClickButton"/>
 
         <Button
             android:id="@+id/btnDiv"
@@ -295,7 +312,8 @@
             android:text="÷"
             android:layout_marginStart="8dp"
             android:textSize="32sp"
-            android:backgroundTint="@color/purple_500"/>
+            android:backgroundTint="@color/purple_500"
+            android:onClick="onClickButton"/>
 
 
 

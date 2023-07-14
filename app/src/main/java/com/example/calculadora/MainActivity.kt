@@ -22,10 +22,15 @@ class MainActivity : AppCompatActivity() {
 
         when(view.id){
             R.id.btnDelete -> {
-
+             val length = binding.tvOperation.length()
+             if (length > 0) {
+                 val newOperation = binding.tvOperation.text.toString().substring(0, length-1)
+                 binding.tvOperation.text = newOperation
+             }
             }
             R.id.btnClear -> {
-
+             binding.tvOperation.text = ""
+             binding.tvResult.text = ""
             }
             R.id.btnResolve -> {
 

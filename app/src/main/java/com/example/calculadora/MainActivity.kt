@@ -67,7 +67,11 @@ class MainActivity : AppCompatActivity() {
             operator = OPERATOR_DIV
         } else if (operation.contains(OPERATOR_SUM)) {
             operator = OPERATOR_SUM
-        } else if (operation.contains(OPERATOR_SUB)) {
+        } else  {
+            operator = OPERATOR_NULL
+        }
+
+        if(operator == OPERATOR_NULL && operation.lastIndexOf(OPERATOR_SUB) > 0){
             operator = OPERATOR_SUB
         }
 

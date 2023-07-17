@@ -48,8 +48,22 @@ class MainActivity : AppCompatActivity() {
         val operator = getOperator(operationRef)
 
         var values = arrayOfNulls<String>(0)
+        if(operator != OPERATOR_NULL){
+           if (operator == OPERATOR_SUB){
+             val index = operationRef.lastIndexOf(OPERATOR_SUB)
+              if(index < operationRef.length-1){
+                  values = arrayOfNulls(2)
+                  values[0] = operationRef.substring(0, index)
+                  values[1] = operationRef.substring(index+1)
+              } else {
+                  values = arrayOfNulls(1)
+                  values[0] = operationRef.substring(0, index)
+              }
+           } else {
+            values = operationRef.split(operator).toTypedArray()
+           }
+        }
 
-        values = operationRef.split(operator).toTypedArray()
 
         val numberOne = values[0]!!.toDouble()
         val numberTwo = values[1]!!.toDouble()

@@ -73,11 +73,10 @@ class MainActivity : AppCompatActivity() {
 
                 binding.tvResult.text = getResult(numberOne, operator, numberTwo).toString()
             } catch (e: NumberFormatException) {
-                Snackbar.make(binding.root, "La expresión es incorrecta", Snackbar.LENGTH_SHORT)
-                    .show()
+               showMessage()
             }
         } else {
-            Snackbar.make(binding.root, "La expresión es incorrecta", Snackbar.LENGTH_SHORT).show()
+           if (operator != OPERATOR_NULL) showMessage()
         }
     }
 
@@ -113,6 +112,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         return result
+    }
+
+    private fun showMessage(){
+        Snackbar.make(binding.root, "La expresión es incorrecta", Snackbar.LENGTH_SHORT).setAnchorView(binding.llTop).show()
     }
 
     companion object {

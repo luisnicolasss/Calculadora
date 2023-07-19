@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.core.widget.addTextChangedListener
 import com.example.calculadora.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -12,10 +13,29 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.tvOperation.addTextChangedListener { charSequence ->
+            if (canReplaceOperator(charSequence.toString())){
+             val length = binding.tvOperation.text.length
+             val newOperation = binding.tvOperation.text.toString().substring(0, length - 2) + binding.tvOperation.text.toString().substring( length - 1)
+             binding.tvOperation.text = newOperation
+        }
+        }
+    }
+
+
+    private fun canReplaceOperator(charSequence: CharSequence): Boolean {
+        if (charSequence.length < 2) return false
+
+        val lastElement = charSequence[charSequence.length - 1].toString()
+        val penultimateElement = charSequence[charSequence.length - 2].toString()
+
+        return (lastElement == OPERATOR_MULTI || lastElement == OPERATOR_DIV || lastElement == OPERATOR_SUM) && (penultimateElement == OPERATOR_MULTI || penultimateElement == OPERATOR_DIV || penultimateElement == OPERATOR_SUM || penultimateElement == OPERATOR_SUB)
     }
 
     fun onClickButton(view: View) {
@@ -38,6 +58,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btnResolve -> {
                 tryResolve(binding.tvOperation.text.toString(), true)
             }
+
             R.id.btnMulti,
             R.id.btnDiv,
             R.id.btnSum,
@@ -48,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 val operation = binding.tvOperation.text.toString()
                 addOperator(operator, operation)
 
-                //binding.tvOperation.append(valueStr)
+
             }
 
             else -> {
@@ -58,31 +79,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addOperator(operator: String, operation: String) {
-      val lastElement = if(operation.isEmpty()) ""
-      else operation.substring(operation.length - 1)
+        val lastElement = if (operation.isEmpty()) ""
+        else operation.substring(operation.length - 1)
 
-      if (operator == OPERATOR_SUB){
-          if (operation.isEmpty() || lastElement != OPERATOR_SUB || lastElement != POINT){
-              binding.tvOperation.append(operator)
-          }
-      } else {
-          if (!operation.isEmpty() && lastElement != POINT){
-              binding.tvOperation.append(operator)
-          }
-      }
+        if (operator == OPERATOR_SUB) {
+            if (operation.isEmpty() || lastElement != OPERATOR_SUB || lastElement != POINT) {
+                binding.tvOperation.append(operator)
+            }
+        } else {
+            if (!operation.isEmpty() && lastElement != POINT) {
+                binding.tvOperation.append(operator)
+            }
+        }
     }
 
     private fun tryResolve(operationRef: String, isFromResolve: Boolean) {
         if (operationRef.isEmpty()) return
 
         var operation = operationRef
-        if (operation.contains(POINT) && operation.lastIndexOf(POINT) == operation.length -1 ){
+        if (operation.contains(POINT) && operation.lastIndexOf(POINT) == operation.length - 1) {
             operation = operation.substring(0, operation.length - 1)
         }
 
         val operator = getOperator(operationRef)
-
-
 
 
         var values = arrayOfNulls<String>(0)
@@ -110,14 +129,14 @@ class MainActivity : AppCompatActivity() {
 
                 binding.tvResult.text = getResult(numberOne, operator, numberTwo).toString()
 
-                if (binding.tvResult.text.isNotEmpty() && !isFromResolve){
+                if (binding.tvResult.text.isNotEmpty() && !isFromResolve) {
                     binding.tvOperation.text = binding.tvResult.text
                 }
             } catch (e: NumberFormatException) {
-               if (isFromResolve) showMessage()
+                if (isFromResolve) showMessage()
             }
         } else {
-           if (isFromResolve && operator != OPERATOR_NULL) showMessage()
+            if (isFromResolve && operator != OPERATOR_NULL) showMessage()
         }
     }
 
@@ -155,8 +174,9 @@ class MainActivity : AppCompatActivity() {
         return result
     }
 
-    private fun showMessage(){
-        Snackbar.make(binding.root, "La expresión es incorrecta", Snackbar.LENGTH_SHORT).setAnchorView(binding.llTop).show()
+    private fun showMessage() {
+        Snackbar.make(binding.root, "La expresión es incorrecta", Snackbar.LENGTH_SHORT)
+            .setAnchorView(binding.llTop).show()
     }
 
     companion object {

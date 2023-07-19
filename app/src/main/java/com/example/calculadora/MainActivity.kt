@@ -62,7 +62,9 @@ class MainActivity : AppCompatActivity() {
       else operation.substring(operation.length - 1)
 
       if (operator == OPERATOR_SUB){
-
+          if (operation.isEmpty() || lastElement != OPERATOR_SUB || lastElement != POINT){
+              binding.tvOperation.append(operator)
+          }
       } else {
           if (!operation.isEmpty() && lastElement != POINT){
               binding.tvOperation.append(operator)

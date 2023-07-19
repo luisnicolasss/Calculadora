@@ -38,6 +38,13 @@ class MainActivity : AppCompatActivity() {
             R.id.btnResolve -> {
                 tryResolve(binding.tvOperation.text.toString())
             }
+            R.id.btnMulti,
+            R.id.btnDiv,
+            R.id.btnSum,
+            R.id.btnSub -> {
+                tryResolve(binding.tvOperation.text.toString())
+                binding.tvOperation.append(valueStr)
+            }
 
             else -> {
                 binding.tvOperation.append(valueStr)
@@ -82,6 +89,10 @@ class MainActivity : AppCompatActivity() {
                 val numberTwo = values[1]!!.toDouble()
 
                 binding.tvResult.text = getResult(numberOne, operator, numberTwo).toString()
+
+                if (binding.tvResult.text.isNotEmpty()){
+                    binding.tvOperation.text = binding.tvResult.text
+                }
             } catch (e: NumberFormatException) {
                showMessage()
             }

@@ -43,13 +43,31 @@ class MainActivity : AppCompatActivity() {
             R.id.btnSum,
             R.id.btnSub -> {
                 tryResolve(binding.tvOperation.text.toString(), false)
-                binding.tvOperation.append(valueStr)
+
+                val operator = valueStr
+                val operation = binding.tvOperation.text.toString()
+                addOperator(operator, operation)
+
+                //binding.tvOperation.append(valueStr)
             }
 
             else -> {
                 binding.tvOperation.append(valueStr)
             }
         }
+    }
+
+    private fun addOperator(operator: String, operation: String) {
+      val lastElement = if(operation.isEmpty()) ""
+      else operation.substring(operation.length - 1)
+
+      if (operator == OPERATOR_SUB){
+
+      } else {
+          if (!operation.isEmpty() && lastElement != POINT){
+              binding.tvOperation.append(operator)
+          }
+      }
     }
 
     private fun tryResolve(operationRef: String, isFromResolve: Boolean) {

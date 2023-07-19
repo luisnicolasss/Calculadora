@@ -36,13 +36,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.btnResolve -> {
-                tryResolve(binding.tvOperation.text.toString())
+                tryResolve(binding.tvOperation.text.toString(), true)
             }
             R.id.btnMulti,
             R.id.btnDiv,
             R.id.btnSum,
             R.id.btnSub -> {
-                tryResolve(binding.tvOperation.text.toString())
+                tryResolve(binding.tvOperation.text.toString(), false)
                 binding.tvOperation.append(valueStr)
             }
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun tryResolve(operationRef: String) {
+    private fun tryResolve(operationRef: String, isFromResolve: Boolean) {
         if (operationRef.isEmpty()) return
 
         var operation = operationRef
@@ -90,14 +90,14 @@ class MainActivity : AppCompatActivity() {
 
                 binding.tvResult.text = getResult(numberOne, operator, numberTwo).toString()
 
-                if (binding.tvResult.text.isNotEmpty()){
+                if (binding.tvResult.text.isNotEmpty() && !isFromResolve){
                     binding.tvOperation.text = binding.tvResult.text
                 }
             } catch (e: NumberFormatException) {
-               showMessage()
+               if (isFromResolve) showMessage()
             }
         } else {
-           if (operator != OPERATOR_NULL) showMessage()
+           if (isFromResolve && operator != OPERATOR_NULL) showMessage()
         }
     }
 

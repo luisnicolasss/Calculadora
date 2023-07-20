@@ -20,11 +20,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvOperation.addTextChangedListener { charSequence ->
-            if (canReplaceOperator(charSequence.toString())){
-             val length = binding.tvOperation.text.length
-             val newOperation = binding.tvOperation.text.toString().substring(0, length - 2) + binding.tvOperation.text.toString().substring( length - 1)
-             binding.tvOperation.text = newOperation
-        }
+            if (canReplaceOperator(charSequence.toString())) {
+                val length = binding.tvOperation.text.length
+                val newOperation = binding.tvOperation.text.toString()
+                    .substring(0, length - 2) + binding.tvOperation.text.toString()
+                    .substring(length - 1)
+                binding.tvOperation.text = newOperation
+            }
         }
     }
 
@@ -68,14 +70,57 @@ class MainActivity : AppCompatActivity() {
                 val operator = valueStr
                 val operation = binding.tvOperation.text.toString()
                 addOperator(operator, operation)
-
-
+            }
+            R.id.btnPoint -> {
+                val operation = binding.tvOperation.text.toString()
+                addPoint(valueStr, operation)
             }
 
             else -> {
                 binding.tvOperation.append(valueStr)
             }
         }
+    }
+
+    private fun addPoint(pointStr: String, operation: String) {
+      if(!operation.contains(POINT)){
+          binding.tvOperation.append(pointStr)
+      } else {
+          val operator = getOperator(operation)
+
+          var values = arrayOfNulls<String>(0)
+          if (operator != OPERATOR_NULL) {
+              if (operator == OPERATOR_SUB) {
+                  val index = operation.lastIndexOf(OPERATOR_SUB)
+                  if (index < operation.length - 1) {
+                      values = arrayOfNulls(2)
+                      values[0] = operation.substring(0, index)
+                      values[1] = operation.substring(index + 1)
+                  } else {
+                      values = arrayOfNulls(1)
+                      values[0] = operation.substring(0, index)
+                  }
+              } else {
+                  values = operation.split(operator).toTypedArray()
+              }
+          }
+
+          if(values.size > 0){
+              val numberOne = values[0]!!
+              if(values.size > 1){
+                  val numberTwo = values[1]!!
+                  if (numberOne.contains(POINT) && !numberTwo.contains(POINT)){
+                      binding.tvOperation.append(pointStr)
+                  }
+              } else {
+                  if (numberOne.contains(POINT)){
+                      binding.tvOperation.append(pointStr)
+                  }
+              }
+          }
+
+      }
+
     }
 
     private fun addOperator(operator: String, operation: String) {
